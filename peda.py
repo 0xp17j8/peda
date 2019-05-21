@@ -7090,6 +7090,16 @@ class PEDACmd(object):
 
         msg(result)
         return
+
+    def one_gadget(self, *args):
+        """
+        Wrapper of one_gadget from https://github.com/david942j/one_gadget
+        """
+        if subprocess.check_output(["which", "one_gadget"]) == "":
+            print("gem install one_gadget")
+
+        print(os.system("one_gadget {}".format(args[0])))
+        
     utils.options = ["int2hexstr", "list2hexstr", "str2intlist"]
 
 ###########################################################################
