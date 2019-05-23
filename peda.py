@@ -7108,9 +7108,9 @@ class PEDACmd(object):
             for line in lines:
                 if "libc.so.6" in line:
                     libc_path = line.split(' ')[2]
-                    print(os.system("one_gadget {}".format(libc_path)))
+                    os.system("one_gadget {}".format(libc_path))
         else:
-            print(os.system("one_gadget {}".format(args[0])))
+            os.system("one_gadget {}".format(args[0]))
     utils.options = ["int2hexstr", "list2hexstr", "str2intlist"]
 
 ###########################################################################
