@@ -7093,13 +7093,24 @@ class PEDACmd(object):
 
     def one_gadget(self, *args):
         """
-        Wrapper of one_gadget from https://github.com/david942j/one_gadget
+        Wrapper command of one_gadget from https://github.com/david942j/one_gadget
+        Usage: 
+           MYNAME 
+           MYNAME <the path of libc>
         """
         if subprocess.check_output(["which", "one_gadget"]) == "":
             print("gem install one_gadget")
 
-        print(os.system("one_gadget {}".format(args[0])))
-        
+        tmp = gdb.execute("info files", to_string=True).split("\n")[0]
+        binpath = re.match('Symbols from "(.+)"', tmp).group(1)
+        if len(args) == 0:
+            lines = subprocess.check_output(["ldd", binpath]).decode('utf-8').split('\n')
+            for line in lines:
+                if "libc.so.6" in line:
+                    libc_path = line.split(' ')[2]
+                    print(os.system("one_gadget {}".format(libc_path)))
+        else:
+            print(os.system("one_gadget {}".format(args[0])))
     utils.options = ["int2hexstr", "list2hexstr", "str2intlist"]
 
 ###########################################################################
