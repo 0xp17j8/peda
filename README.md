@@ -18,6 +18,7 @@ PEDA - Python Exploit Development Assistance for GDB
 * Syscall information in x86/x64
 * SROP information in x86/x64
 * contextup/contextdown scroll context of code
+* Search OneGadget-RCE using [one_gadget](https://github.com/david942j/one_gadget)
 
 ## Key Features:
 * Enhance the display of gdb: colorize and display disassembly codes, registers, memory information during debugging.
